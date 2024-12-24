@@ -1,0 +1,16 @@
+To-Do:
+When login / register is pressed
+Close button "x"
+user is from username input
+Verfication code post request and retireve error parse json into screen output (failure is a useState[]) (linked to onsubmit on login / register panel forms)
+can only create popups if logged in (after username created)
+log out = onClick setUser(null)
+Send on yt about the vid that I used maptiler instead and code repository found in my github
+
+Issues:
+
+Maybe solution:
+(Isolation of pieces)
+
+Future idea:
+A way to test code or ideas by placing popups around a drawboard
