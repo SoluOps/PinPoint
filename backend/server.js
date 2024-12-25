@@ -5,10 +5,8 @@ const app = express();
 const pointsRoute = require("./routes/points");
 const usersRoute = require("./routes/users");
 
-// Kinda like a front door to different parts of the backend
 
 // For use of json file
-
 app.use(express.json()); 
 
 // http link to points part in backend for API requests
