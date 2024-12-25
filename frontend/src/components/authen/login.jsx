@@ -20,9 +20,8 @@ function Login({ onClose }) {
       const res = await axios.post("/users/login", newLogin);
 
         const userData = res.data;
-        console.log(userData); // {_id: "...", username: "..."}
         onClose();
-        
+
     } catch (err) {
       if (err.response && err.response.status === 400) {
         setError(err.response.data); // Display "Wrong username or password!"
