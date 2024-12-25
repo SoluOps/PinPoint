@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './authen.css';
 
-function Register({ onClose }) {
+function Register({ onClose , setUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -21,6 +21,7 @@ function Register({ onClose }) {
       const res = await axios.post("/users/register", newRegister);
 
         const userData = res.data; // use this to set user
+        setUser(userData); // Update user state of App.js
         onClose();
 
     } catch (err) {

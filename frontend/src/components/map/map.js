@@ -6,8 +6,6 @@ import logo from './PinPoints_logo.png';
 import markerLogo from './markerLogo.png';
 import axios from 'axios';
 import {format} from 'timeago.js'; 
-import Login from '../authen/login.jsx'
-import Register from '../authen/register.jsx'
 
 const styles = {
   container: {
@@ -26,7 +24,7 @@ const styles = {
 
 
 
-const Map = () => {
+const Map = ({ user }) => {
     const mapContainer = useRef(null); // Reference for the map container
     const mapInstance = useRef(null); // Reference to store the map instance
     maptilersdk.config.apiKey = process.env.REACT_APP_MAP_API_KEY;
@@ -37,9 +35,6 @@ const Map = () => {
     const [newLocation, setLocation] = useState(null);
     const [title, setTitle] = useState(null);
     const [pointDesc, setPointDesc] = useState(null);
-    const [user, setUser] = useState(null);
-    const [showLogin, setShowLogin] = useState(false);
-    const [showRegister, setShowRegister] = useState(false);
     
     // get all pins 
     useEffect(() => {
@@ -207,39 +202,6 @@ const Map = () => {
       <div ref={mapContainer} style={{ height: '100vh', width: '100%'}}>
           <div style={styles.container}>
               <img src={logo} alt="logo" style={styles.logo} />
-
-              {/* Add buttons here */}
-
-              {user ? (
-                <button style={{backgroundColor: 'black', position: 'absolute', top: "17px", right: "77px"}}>LOG OUT</button>
-              ): (
-                <div>
-                  <button 
-                    style={{backgroundColor: 'smokewhite', color: 'black', position: 'absolute', top: "17px", right: "77px"}} 
-                    onClick={() => setShowLogin(true)}
-                  >
-                    LOGIN
-                  </button>
-                  <button style={{backgroundColor: '#5e17eb', position: 'absolute', top: "17px", right: "141px"}}
-                    onClick={() => setShowRegister(true)}
-                  >
-                    REGISTER
-                  </button>
-
-                </div>
-              )};
-
-              {showLogin && (
-                <div>
-                  <Login onClose={() => setShowLogin(false)} />
-                </div>
-              )};
-              
-              {showRegister && (
-                <div>
-                  <Register onClose={() => setShowRegister(false)} />
-                </div>
-              )};
           </div>
       </div>
   );

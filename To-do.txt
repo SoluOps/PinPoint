@@ -1,12 +1,10 @@
 To-Do:
 
+make warning message pretty in authen css
+
 
 user is from username input
-onclose similar thing > values
-deal with return json data
-Verfication code post request and retireve error parse json into screen output (failure is a useState[]) (linked to onsubmit on login / register panel forms)
 
-log out = onClick setUser(null)
 
 user is from username input => setUser(name) => can only create popups if logged in 
 

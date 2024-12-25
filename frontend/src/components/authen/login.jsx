@@ -3,7 +3,7 @@ import axios from 'axios';
 import './authen.css';
 
 
-function Login({ onClose }) {
+function Login({ onClose , setUser}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,6 +20,7 @@ function Login({ onClose }) {
       const res = await axios.post("/users/login", newLogin);
 
         const userData = res.data;
+        setUser(userData); // Update user state of App.js
         onClose();
 
     } catch (err) {
