@@ -20,7 +20,7 @@ function Login({ onClose , setUser}) {
       const res = await axios.post("/users/login", newLogin);
 
         const userData = res.data;
-        setUser(userData); // Update user state of App.js
+        setUser(userData.username); // Update user state of App.js
         onClose();
 
     } catch (err) {

@@ -35,7 +35,8 @@ const Map = ({ user }) => {
     const [newLocation, setLocation] = useState(null);
     const [title, setTitle] = useState(null);
     const [pointDesc, setPointDesc] = useState(null);
-    
+    const [submitFlag, setSubmitFlag] = useState(false);
+
     // get all pins 
     useEffect(() => {
       const getPoints = async () => {
@@ -45,7 +46,6 @@ const Map = ({ user }) => {
         } catch (error) {
           console.log(error)   
         }
-        return points;
       }
       getPoints();
     },[]);
@@ -65,17 +65,7 @@ const Map = ({ user }) => {
 
     
     });
-      
-
-      // retrieve double click co-ord
-      // if (user) {
-        mapInstance.current.on('dblclick', function(event) {
-        setLocation(event.lngLat);
-        });
-      // };
-
     }, []);
-
 
     
     // iterate prints of all pins
@@ -117,32 +107,7 @@ const Map = ({ user }) => {
     });
 
     // handles submit to post request user data 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const xPoint = newLocation.lng;
-      const yPoint = newLocation.lat;
 
-      const newPoint = {
-        username: user,
-        title: title,
-        point: pointDesc,
-        x: xPoint,
-        y: yPoint,
-      };
-
-
-      setPoints([...points,newPoint]);
-
-
-      try{
-        const req = await axios.post("/points", newPoint);
-        inputPopup.remove()
-
-      }catch(error){
-        console.log(error)
-      };
-
-    };
 
 
     // live HTML that actually allows js
@@ -155,7 +120,7 @@ const Map = ({ user }) => {
     const titleInput = document.createElement('input');
     titleInput.style = "border: none; font-size: 16px; font-weight: bold; margin-top: 20px; margin-bottom: 20px; text-align: center";
     titleInput.placeholder = "Enter a title...";
-    titleInput.addEventListener('input', (e) => setTitle(e.target.value));
+    titleInput.onchange = (e) => setTitle(e.target.value);
     
 
     const pointLabel = document.createElement('label');
@@ -164,7 +129,7 @@ const Map = ({ user }) => {
     const pointText = document.createElement('textarea');
     pointText.style = "border: none; width: 99%; font-size: 15px; margin: 20px; margin-left: 0";
     pointText.placeholder = "Express a Point!";
-    pointText.addEventListener('input', (e) => setPointDesc(e.target.value));
+    pointText.onchange = (e) => setPointDesc(e.target.value);
 
 
     const submitButton = document.createElement('button');
@@ -172,7 +137,8 @@ const Map = ({ user }) => {
     submitButton.innerHTML = "ADD POINT";
     submitButton.style = "background-color: #5e17eb; width: 100%; margin-bottom: 5px"
 
-    form.onsubmit = handleSubmit; 
+    form.onsubmit = (e) => {setSubmitFlag(true); e.preventDefault()}
+    
 
 
     // packaging the html tag into their level of indentation
@@ -190,12 +156,53 @@ const Map = ({ user }) => {
     const inputToMap = () => inputPopup.setLngLat(newLocation).addTo(mapInstance.current);
 
     // add input popup form
-    useEffect(() => { // useEffect used for only render once when a change occurs => no same changes trigger render
-      newLocation && inputToMap();
+    useEffect(() => { // infinite dblclick event listener
+      const handleDblClick = (event) => {
+        setLocation(event.lngLat)
+        console.log(newLocation)
+        newLocation && inputToMap();
+      };
 
-    },[newLocation]);
+      if (user) {
+        mapInstance.current.on('dblclick', handleDblClick);
+      }
 
-    
+      return () => {
+        mapInstance.current.off('dblclick', handleDblClick);
+        console.log("dblclick listener removed");
+      };
+
+    },[newLocation, user]);
+
+
+    useEffect(() => {
+      const postData = async () => {
+        const xPoint = newLocation.lng;
+        const yPoint = newLocation.lat;
+
+        const newPoint = {
+          username: user,
+          title: title,
+          point: pointDesc,
+          x: xPoint,
+          y: yPoint,
+        };
+
+        setPoints([...points,newPoint]);
+
+        inputPopup.remove();
+
+        try{
+          const req = await axios.post("/points", newPoint);
+          inputPopup.remove()
+
+        }catch(error){
+          console.log(error)
+        }
+      };
+
+      submitFlag && postData();
+    }, [submitFlag]);
 
     // views map in html
     return (

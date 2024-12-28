@@ -21,7 +21,7 @@ function Register({ onClose , setUser}) {
       const res = await axios.post("/users/register", newRegister);
 
         const userData = res.data; // use this to set user
-        setUser(userData); // Update user state of App.js
+        setUser(userData.username); // Update user state of App.js
         onClose();
 
     } catch (err) {
