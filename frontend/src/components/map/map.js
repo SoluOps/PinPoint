@@ -36,6 +36,7 @@ const Map = ({ user }) => {
     const [title, setTitle] = useState(null);
     const [pointDesc, setPointDesc] = useState(null);
     const [submitFlag, setSubmitFlag] = useState(false);
+    const [popupFlag, setPopupFlag] = useState(false);
 
     // get all pins 
     useEffect(() => {
@@ -159,22 +160,20 @@ const Map = ({ user }) => {
     useEffect(() => { // infinite dblclick event listener
       const handleDblClick = (event) => {
         setLocation(event.lngLat)
-        console.log(newLocation)
-        newLocation && inputToMap();
       };
 
       if (user) {
         mapInstance.current.on('dblclick', handleDblClick);
+        newLocation && inputToMap()
       }
 
       return () => {
         mapInstance.current.off('dblclick', handleDblClick);
-        console.log("dblclick listener removed");
       };
 
     },[newLocation, user]);
-
-
+    
+    
     useEffect(() => {
       const postData = async () => {
         const xPoint = newLocation.lng;
@@ -190,19 +189,27 @@ const Map = ({ user }) => {
 
         setPoints([...points,newPoint]);
 
-        inputPopup.remove();
-
         try{
           const req = await axios.post("/points", newPoint);
-          inputPopup.remove()
 
         }catch(error){
           console.log(error)
         }
       };
 
-      submitFlag && postData();
-    }, [submitFlag]);
+      if (submitFlag) {
+        setSubmitFlag(false);
+        setPopupFlag(true);
+        postData();
+      };
+
+      if (popupFlag) {
+        inputPopup.remove();
+        console.log("popup closed")
+        setPopupFlag(false);
+      };
+
+    }, [submitFlag, popupFlag]);
 
     // views map in html
     return (

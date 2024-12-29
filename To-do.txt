@@ -5,15 +5,11 @@ make warning message pretty in authen css
 - cookies local cache or smth
 
 
-user is from username input => setUser(name) => can only create popups if logged in nearly there
-
 Send on yt about the vid that I used maptiler instead and code repository found in my github
 
 Issues:
-click(tom) adel -> tom
-click(tom) tom -> view popup
-- the title taking time to be set 
-so the old title is used when POST request sent, then the new title is set
+- maybe multiple popups are loading at once so inputPopup.remove() is working but not on all popups created
+- 
 
 Maybe solution:
 - useEffect for title, pointDesc new values

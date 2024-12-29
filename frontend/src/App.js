@@ -44,7 +44,7 @@ function App() {
                   <Register onClose={() => setShowRegister(false)} setUser={setUser} />
                 </div>
               )}
-      <Map user={user} />
+      <Map user={user}/>
     </div>
   )
 }
