@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# PinPoint
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PinPoints is an interactive web application that allows users to add and visualise points of interest on a dynamic map. Users can register or log in to securely add points with a title and description "Point", enhancing their mapping experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication**: Secure registration and login to manage your points.
+- **Interactive Map**: Add, view, and interact with points on a customisable map.
+- **Point Details**: Each point includes a title and description, "Point" for better context.
+- **Real-time Updates**: Instantly see new points added by you and others.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: 
+  - **React**: Builds a dynamic and responsive user interface.
+  - **MapTiler SDK**: Provides robust and free mapping functionalities. Unlike Llama Dev, which uses Mapbox in the frontend, PinPoints utilises MapTiler as Mapbox doesn't offer a free alternative.
+  
+- **Backend**:
+  - **Node.js & Express**: Powers a scalable and efficient server.
+  - **MongoDB**: Stores user data and map points with flexible data modeling.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Credits
 
-### `npm test`
+- **MapTiler**: For their open-source map module powering PinPoint.
+- **Llama Dev**: Inspiration for design and backend assistance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Issues
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Popup Form Not Closing**: Currently, the popup form for adding a "Point" does not close automatically after submission.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [MIT License](LICENSE).
