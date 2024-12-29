@@ -37,6 +37,7 @@ const Map = ({ user }) => {
     const [pointDesc, setPointDesc] = useState(null);
     const [submitFlag, setSubmitFlag] = useState(false);
 
+
     // get all pins 
     useEffect(() => {
       const getPoints = async () => {
@@ -51,7 +52,6 @@ const Map = ({ user }) => {
     },[]);
 
     
-
 
     // renders map
     useEffect (() => {
