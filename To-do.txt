@@ -8,10 +8,14 @@ make warning message pretty in authen css
 Send on yt about the vid that I used maptiler instead and code repository found in my github
 
 Issues:
-- maybe multiple popups are loading at once so inputPopup.remove() is working but not on all popups created
-- 
+- cannot close popup :(
 
 Maybe solution:
+- current point that is made togglePopup so that it closes form popup and shows what they added
+- if last points[p] = last position then add marker and togglePopup
+
+
+Worked Solution:
 - useEffect for title, pointDesc new values
 - form.onsubmit > is a useState flag (false/true)
 - if useState flag is true, then the new title and pointDesc 

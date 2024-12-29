@@ -36,7 +36,6 @@ const Map = ({ user }) => {
     const [title, setTitle] = useState(null);
     const [pointDesc, setPointDesc] = useState(null);
     const [submitFlag, setSubmitFlag] = useState(false);
-    const [popupFlag, setPopupFlag] = useState(false);
 
     // get all pins 
     useEffect(() => {
@@ -70,7 +69,7 @@ const Map = ({ user }) => {
 
     
     // iterate prints of all pins
-    points && points.forEach(p => {
+    points && points.forEach((p, index) => {
 
         // Create the element for the marker
         const el = document.createElement('div'); 
@@ -103,11 +102,15 @@ const Map = ({ user }) => {
         marker.setPopup(popup); // Attach the popup to the marker
       
 
-        // Add the marker to the map
-        marker.addTo(mapInstance.current)
-    });
+        // Add the marker to the map, last point shows popup when added by user
 
-    // handles submit to post request user data 
+        if (index === points.length - 1) {
+          marker.addTo(mapInstance.current)
+          marker.togglePopup();
+        } else {
+          marker.addTo(mapInstance.current)
+        };
+    });
 
 
 
@@ -155,6 +158,8 @@ const Map = ({ user }) => {
     // condition && action => like if statment 
     const inputPopup = new maptilersdk.Popup().setDOMContent(container);
     const inputToMap = () => inputPopup.setLngLat(newLocation).addTo(mapInstance.current);
+      
+  
 
     // add input popup form
     useEffect(() => { // infinite dblclick event listener
@@ -172,8 +177,9 @@ const Map = ({ user }) => {
       };
 
     },[newLocation, user]);
-    
-    
+
+
+    // handles submit to post request user data 
     useEffect(() => {
       const postData = async () => {
         const xPoint = newLocation.lng;
@@ -198,18 +204,12 @@ const Map = ({ user }) => {
       };
 
       if (submitFlag) {
-        setSubmitFlag(false);
-        setPopupFlag(true);
         postData();
+        setSubmitFlag(false)
       };
 
-      if (popupFlag) {
-        inputPopup.remove();
-        console.log("popup closed")
-        setPopupFlag(false);
-      };
-
-    }, [submitFlag, popupFlag]);
+    }, [submitFlag]);
+    
 
     // views map in html
     return (
