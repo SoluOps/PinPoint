@@ -60,7 +60,7 @@ const Map = ({ user }) => {
       mapInstance.current = new maptilersdk.Map({
         container: mapContainer.current, // ID or ref to the container div
         style: maptilersdk.MapStyle.BASIC, // Map style
-        center: [-43,71], // Longitude, Latitude
+        center: [67,73], // Longitude, Latitude
         zoom: 3,
 
     
@@ -103,7 +103,6 @@ const Map = ({ user }) => {
       
 
         // Add the marker to the map, last point shows popup when added by user
-
         if (index === points.length - 1) {
           marker.addTo(mapInstance.current);
           marker.togglePopup();
