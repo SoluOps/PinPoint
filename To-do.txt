@@ -2,7 +2,6 @@ To-Do:
 
 make warning message pretty in authen css
 
-- cookies local cache or smth
 
 
 Send on yt about the vid that I used maptiler instead and code repository found in my github

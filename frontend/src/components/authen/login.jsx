@@ -47,8 +47,8 @@ function Login({ onClose , setUser}) {
             placeholder=" Password:" 
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error && <div className="errorMessage">{error}</div>}
           <button className="registerButton">LOGIN</button>
+          {error && <div className="errorMessage">{error}</div>}
       </form>   
     </div>
   );

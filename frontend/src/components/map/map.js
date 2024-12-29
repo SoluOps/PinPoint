@@ -105,7 +105,7 @@ const Map = ({ user }) => {
         // Add the marker to the map, last point shows popup when added by user
 
         if (index === points.length - 1) {
-          marker.addTo(mapInstance.current)
+          marker.addTo(mapInstance.current);
           marker.togglePopup();
         } else {
           marker.addTo(mapInstance.current)
@@ -205,7 +205,7 @@ const Map = ({ user }) => {
 
       if (submitFlag) {
         postData();
-        setSubmitFlag(false)
+        setSubmitFlag(false);
       };
 
     }, [submitFlag]);
