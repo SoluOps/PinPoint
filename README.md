@@ -2,12 +2,16 @@
 
 PinPoints is an interactive web application that allows users to add and visualise points of interest on a dynamic map. Users can register or log in to securely add points with a title and description "Point", enhancing their mapping experience.
 
+![alt text](<Screenshot 2024-12-29 180645.png>)
+
 ## Features
 
 - **User Authentication**: Secure registration and login to manage your points.
 - **Interactive Map**: Add, view, and interact with points on a customisable map.
 - **Point Details**: Each point includes a title and description, "Point" for better context.
 - **Real-time Updates**: Instantly see new points added by you and others.
+
+![alt text](<Screenshot 2024-12-29 180936.png>)
 
 ## Technologies Used
 
