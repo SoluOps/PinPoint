@@ -13,7 +13,7 @@ PinPoints is an interactive web application that allows users to add and visuali
 
 ![alt text](<Screenshot 2024-12-29 180936.png>)
 
-## Technologies Used
+## Technologies 
 
 - **Frontend**: 
   - **React**: Builds a dynamic and responsive user interface.
